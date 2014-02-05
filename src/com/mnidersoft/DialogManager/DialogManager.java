@@ -13,8 +13,8 @@ import android.view.View;
  * 
  * @author Allan Ariel Leite Menezes Santos
  * @email allan.ariel1987@gmail.com
- * @projectInFacebook www.facebook.com/mnidersoft
- * @projectInPlayStore https://play.google.com/store/search?q=mnidersoft
+ * @myProjectsInFacebook www.facebook.com/mnidersoft
+ * @myProjectsInPlayStore https://play.google.com/store/search?q=mnidersoft
  */
 public class DialogManager {
 
