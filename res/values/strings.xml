@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DialogManager Example</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="confirm">Do you confirm?</string>
+	<string name="confirmed">Yes, you confirmed</string>
+	<string name="do_anything">Do anything</string>
+	<string name="none"></string>
+    
+    <string name="alert_dialog">Alert Dialog (one button)</string>
+    <string name="confirm_dialog">Confirm Dialog (two buttons)</string>
+    <string name="progress_dialog">Progress Dialog (inderteminate)</string>
+    <string name="custom_dialog">Custom Dialog (free layout)</string>
+</resources>

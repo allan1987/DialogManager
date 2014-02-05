@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dip" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="20dip"
+        android:text="@string/app_name" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".MainActivity" >
+
+        <Button
+            android:id="@+id/alertDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dip"
+            android:text="@string/alert_dialog" />
+
+        <Button
+            android:id="@+id/confirmDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dip"
+            android:text="@string/confirm_dialog" />
+
+        <Button
+            android:id="@+id/progressDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dip"
+            android:text="@string/progress_dialog" />
+
+        <Button
+            android:id="@+id/customDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dip"
+            android:text="@string/custom_dialog" />
+    </LinearLayout>
+    
+</RelativeLayout>
