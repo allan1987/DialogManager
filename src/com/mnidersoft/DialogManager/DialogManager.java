@@ -4,8 +4,11 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.DialogInterface.OnDismissListener;
 import android.view.View;
+import android.view.ViewGroup;
 
 /**
  * DialogManager version 1.0
@@ -20,7 +23,7 @@ public class DialogManager {
 
 	private final String WARNING = "Warning";
 	private final String PLEASE_WAIT = "Please, wait...";
-			
+
 	private static DialogManager instance;
 
 	private Dialog dialog;
@@ -51,6 +54,7 @@ public class DialogManager {
 		if(this.dialog != null) {
 			this.dialog.dismiss();
 			this.dialog = null;
+			return;
 		}
 	}
 
@@ -69,7 +73,7 @@ public class DialogManager {
 		.setPositiveButton(this.context.getString(android.R.string.ok), listener)
 		.show();
 	}
-	
+
 	/**
 	 * Shows a Alert Dialog with a custom title, the message and the button listener
 	 * @param titleId Title id of your dialog
@@ -94,7 +98,7 @@ public class DialogManager {
 	public void makeAlert(String message, OnClickListener listener) {
 		this.makeAlert(this.WARNING, message, listener);
 	}
-	
+
 	/**
 	 * Shows a Alert Dialog with a default title, the message and the button listener
 	 * @param messageId Message id of your dialog
@@ -111,7 +115,7 @@ public class DialogManager {
 	public void makeAlert(String message) {
 		this.makeAlert(message, null);
 	}
-	
+
 	/**
 	 * Shows a Alert Dialog with a default title, the message and without button listener
 	 * @param messageId Message id of your dialog
@@ -136,7 +140,7 @@ public class DialogManager {
 		.setNegativeButton(this.context.getString(android.R.string.no), null)
 		.show();
 	}
-	
+
 	/**
 	 * Shows a Confirm Dialog which has a custom title, the message and yes button listener
 	 * @param titleId Title id of your dialog
@@ -162,7 +166,7 @@ public class DialogManager {
 	public void makeConfirm(String message, OnClickListener yesListener) {
 		this.makeConfirm(this.WARNING, message, yesListener);
 	}
-	
+
 	/**
 	 * Shows a Confirm Dialog which has a default title, the message and yes button listener
 	 * @param messageId Message id of your dialog
@@ -188,8 +192,10 @@ public class DialogManager {
 			builder.setTitle(title);
 		}
 		this.dialog = builder.show();
+		
+		this.setOnDismissListener(view);
 	}
-	
+
 	/**
 	 * Shows a custom View with has a custom title and can be cancelable
 	 * @param titleId Title id of your dialog
@@ -203,8 +209,24 @@ public class DialogManager {
 		.setView(view)
 		.setCancelable(cancelable);
 		this.dialog = builder.show();
+		
+		this.setOnDismissListener(view);
 	}
 
+	/**
+	 * Remove all views when dialog is dismissing. This is important because of "the specified child already has a parent" exception
+	 * @param view View of your dialog
+	 */
+	private void setOnDismissListener(final View view) {
+		this.dialog.setOnDismissListener(new OnDismissListener() {
+			@Override
+			public void onDismiss(DialogInterface dialog) {
+				ViewGroup parent = (ViewGroup)view.getParent();
+				parent.removeAllViews();
+			}
+		});
+	}
+	
 	/**
 	 * Shows a custom View with has a custom title and can be cancelable
 	 * @param title Title id of your dialog
@@ -213,7 +235,7 @@ public class DialogManager {
 	public void showContent(String title, View view) {
 		this.showContent(title, view, true);
 	}
-	
+
 	/**
 	 * Shows a custom View with has a custom title and can be cancelable
 	 * @param titleId Title of your dialog
@@ -231,7 +253,7 @@ public class DialogManager {
 	public void showContent(View view, boolean cancelable) {
 		this.showContent(null, view, cancelable);
 	}
-	
+
 	/**
 	 * Shows a custom View that can be cancelable
 	 * @param view View of your dialog
@@ -265,7 +287,7 @@ public class DialogManager {
 		this.dialog = ProgressDialog.show(this.context, "", message, true, cancelable);
 		this.dialog.show();
 	}
-	
+
 	/**
 	 * Shows a Wait Screen which has a custom message and can be cancelable
 	 * @param messageId Message id of this dialog
